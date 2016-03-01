@@ -1,6 +1,6 @@
 <?php
 
-function siteorigin_settings_localize( $loc ){
+function siteorigin_north_settings_localize( $loc ){
 	return wp_parse_args( array(
 		'section_title' => __('Theme Settings', 'siteorigin-north'),
 		'section_description' => __('Change settings for your theme.', 'siteorigin-north'),
@@ -15,7 +15,7 @@ function siteorigin_settings_localize( $loc ){
 		'meta_box' => __('Page settings', 'siteorigin-north'),
 	), $loc);
 }
-add_filter('siteorigin_settings_localization', 'siteorigin_settings_localize');
+add_filter('siteorigin_settings_localization', 'siteorigin_north_settings_localize');
 
 /**
  * Initialize the settings
@@ -42,12 +42,12 @@ function siteorigin_north_settings_init(){
 					'label' => __('Site Description', 'siteorigin-north'),
 					'description' => __('Show your site description below your site title or logo.', 'siteorigin-north')
 				),
-				'attribution' => array(
-					'type' => 'checkbox',
-					'label' => __('SiteOrigin Attribution', 'siteorigin-north'),
-					'description' => __('Remove SiteOrigin attribution from your footer.', 'siteorigin-north'),
-					'teaser' => true,
-				),
+//				'attribution' => array(
+//					'type' => 'checkbox',
+//					'label' => __('SiteOrigin Attribution', 'siteorigin-north'),
+//					'description' => __('Remove SiteOrigin attribution from your footer.', 'siteorigin-north'),
+//					'teaser' => true,
+//				),
 				'accent' => array(
 					'type' => 'color',
 					'label' => __('Accent Color', 'siteorigin-north'),
@@ -223,6 +223,11 @@ function siteorigin_north_settings_init(){
 					'label' => __('Scroll to top', 'siteorigin-north'),
 					'description' => __('Display a scroll to top button', 'siteorigin-north'),
 				),
+				'smooth_scroll' => array(
+					'type' => 'checkbox',
+					'label' => __('Smooth scroll', 'siteorigin-north'),
+					'description' => __('Smooth scroll for internal anchor links', 'siteorigin-north'),
+				)
 			),
 		),
 
@@ -663,6 +668,7 @@ function siteorigin_north_settings_defaults( $defaults ){
 	$defaults['navigation_resize_logo'] = true;
 	$defaults['navigation_post'] = true;
 	$defaults['navigation_scroll_to_top'] = true;
+	$defaults['navigation_smooth_scroll'] = true;
 
 	// Responsive settings
 	$defaults['responsive_disabled'] = false;
@@ -681,15 +687,20 @@ function siteorigin_north_settings_defaults( $defaults ){
 	// Footer defaults
 	$defaults['footer_text'] = __('Copyright © {year} {sitename}', 'siteorigin-north');
 	$defaults['footer_constrained'] = false;
+	$defaults['footer_background_color'] = '#fafafa';
+	$defaults['footer_border_color'] = '#d4d4d4';
+	$defaults['footer_border_width'] = '1px';
+	$defaults['footer_top_padding'] = '40px';
+	$defaults['footer_side_padding'] = '40px';
+	$defaults['footer_top_margin'] = '30px';
+
+	// WooCommerce defaults
+	$defaults['woocommerce_display_cart'] = true;
+
 	return $defaults;
 }
 add_filter('siteorigin_settings_defaults', 'siteorigin_north_settings_defaults');
 
-function siteorigin_north_custom_css( $css ) {
-	$css .= '';
-	return $css;
-}
-add_filter('siteorigin_settings_custom_css', 'siteorigin_north_custom_css');
 
 /**
  * Setup Page Settings for SiteOrigin North
