@@ -95,6 +95,25 @@
     border-left: 1px solid #d3ced3;
     float: right; }
 
+.woocommerce .woocommerce-ordering .ordering-selector-wrapper .north-icon-previous {
+  float: left;
+  margin: 0 10px 0 -3px;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: all 0.15s ease-in;
+  -moz-transition: all 0.15s ease-in;
+  transition: all 0.15s ease-in; }
+
+.woocommerce .woocommerce-ordering .ordering-selector-wrapper:hover .north-icon-previous {
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg); }
+
 .woocommerce a.button,
 .woocommerce button.button,
 .woocommerce input.button,
