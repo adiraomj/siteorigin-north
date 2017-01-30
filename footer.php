@@ -5,7 +5,7 @@
  * Contains the closing of the #content div and all content after
  *
  * @package siteorigin-north
- * @license GPL 2.0 
+ * @license GPL 2.0
  */
 
 ?>
@@ -16,22 +16,24 @@
 	<?php do_action( 'siteorigin_north_footer_before' ); ?>
 
 	<footer id="colophon" class="site-footer <?php if ( ! siteorigin_setting( 'footer_constrained' ) ) echo 'unconstrained-footer' ?>" role="contentinfo">
-		
+
 		<?php do_action( 'siteorigin_north_footer_top' ); ?>
-		
+
 		<?php if ( ! siteorigin_page_setting( 'hide_footer_widgets', false ) && ! in_array( siteorigin_page_setting( 'layout' ), array( 'stripped' ), true ) ) : ?>
 			<div class="container">
 
-				<?php
-				if ( is_active_sidebar( 'footer-sidebar' ) ) {
-					$siteorigin_north_sidebars = wp_get_sidebars_widgets();
-					?>
+				<?php $siteorigin_north_sidebars = wp_get_sidebars_widgets(); ?>
+				<?php if ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) : ?>
+					<?php if ( is_active_sidebar( 'wc-footer' ) ) : ?>
+						<div class="widgets widget-area widgets-<?php echo count( $siteorigin_north_sidebars['wc-footer'] ) ?>" role="complementary" aria-label="<?php _e( 'WC Footer', 'siteorigin-north' ); ?>">
+							<?php dynamic_sidebar( 'wc-footer' ); ?>
+						</div>
+					<?php endif; ?>
+				<?php elseif ( is_active_sidebar( 'footer-sidebar' ) ) : ?>
 					<div class="widgets widget-area widgets-<?php echo count( $siteorigin_north_sidebars['footer-sidebar'] ) ?>" role="complementary" aria-label="<?php _e( 'Footer Sidebar', 'siteorigin-north' ); ?>">
 						<?php dynamic_sidebar( 'footer-sidebar' ); ?>
 					</div>
-					<?php
-				}
-				?>
+				<?php endif; ?>
 
 			</div><!-- .container -->
 		<?php endif; ?>
